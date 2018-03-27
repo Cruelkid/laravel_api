@@ -26,6 +26,7 @@ Route::put('countries/{country}', 'CountryController@update');
 Route::delete('countries/{country}', 'CountryController@delete');
 
 Route::get('countries/{country}/users', 'UserController@showUsersByCountry');
+Route::get('countries/{country}/posts', 'PostController@showPostsByCountry');
 
 Route::get('posts', 'PostController@index');
 Route::get('posts/{post}', 'PostController@show');

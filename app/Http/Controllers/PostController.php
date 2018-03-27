@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -37,6 +39,17 @@ class PostController extends Controller
         $post->delete();
 
         return response()->json(null, 204);
+    }
+
+    public function showPostsByCountry(Request $request, Country $country) {
+        $users = User::where('country_id', $country->id)->get();
+        $posts = [];
+
+        foreach ($users as $user) {
+            $posts[] = Post::where('user_id', $user->id)->get();
+        }
+
+        return $posts;
     }
 
 }
